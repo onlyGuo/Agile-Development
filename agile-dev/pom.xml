@@ -32,26 +32,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.fusesource/sigar -->
-		<dependency>
-		    <groupId>org.fusesource</groupId>
-		    <artifactId>sigar</artifactId>
-		    <version>1.6.4</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>com.github.odiszapc</groupId>
-		    <artifactId>nginxparser</artifactId>
-		    <version>0.9.3</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.31</version>
 		</dependency>
-		
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
