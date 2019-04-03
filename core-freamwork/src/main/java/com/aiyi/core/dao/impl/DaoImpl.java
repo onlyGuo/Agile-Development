@@ -101,7 +101,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public int add(T po) {
-		// TODO Auto-generated method stub
 		String sql = "insert into " + tableName + " (";
 		String prams = "";
 		String values = "";
@@ -191,7 +190,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public T get(PK id) {
-		// TODO Auto-generated method stub
 		String sql = "select ";
 		for (int i = 0; i < selectSqlParms.size(); i++) {
 			sql += selectSqlParms.get(i).getDbField() + " AS " + selectSqlParms.get(i).getField().getName();
@@ -210,7 +208,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public Serializable getField(PK id, String fileName) {
-		// TODO Auto-generated method stub
 		String field = fileName;
 		String tabField = "";
 		Field f = sqlUtil.getField(this.entityClass, fileName);
@@ -234,7 +231,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public T get(WherePrams where) {
-		// TODO Auto-generated method stub
 		String sql = "select ";
 		for (int i = 0; i < selectSqlParms.size(); i++) {
 			sql += selectSqlParms.get(i).getDbField() + " AS " + selectSqlParms.get(i).getField().getName();
@@ -254,7 +250,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public Serializable getFile(WherePrams where, String fileName) {
-		// TODO Auto-generated method stub
 		String field = fileName;
 		String tabField = "";
 		Field f = sqlUtil.getField(this.entityClass, fileName);
@@ -278,8 +273,7 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public List<T> list(WherePrams where) {
-		// TODO Auto-generated method stub
-		
+
 		String sql = "SELECT ";
 		for (int i = 0; i < selectSqlParms.size(); i++) {
 			sql += selectSqlParms.get(i).getDbField() + " AS " + selectSqlParms.get(i).getField().getName();
@@ -332,8 +326,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public int update(T po) {
-		// TODO Auto-generated method stub
-		
 		Serializable id = sqlUtil.getFileValue(po, this.idName);
 		
 		if(null == id){
@@ -463,7 +455,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public int del(PK id) {
-		// TODO Auto-generated method stub
 		String sql = "delete from " + tableName + " where " + this.pkName + "='" + id + "'";
 		SqlLog.info(sql);
 		return sqlSessionTemplateASS.delete("deleteById", sql);
@@ -471,8 +462,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public int del(WherePrams where) {
-		// TODO Auto-generated method stub
-		
 		String sql = "delete from " + tableName + where.getWherePrams();
 		SqlLog.info(sql);
 		return sqlSessionTemplateASS.delete("deleteByparm", sql);
@@ -480,7 +469,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public List<Map<String, Object>> listBySql(String sql) {
-		// TODO Auto-generated method stub
 		SqlLog.info(sql);
 		List<Map<String, Object>> selectList = sqlSessionTemplateASS.selectList("selectBySql", sql);
 		return selectList;
@@ -488,15 +476,12 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public int excuse(String sql) {
-		// TODO Auto-generated method stub
 		SqlLog.info(sql);
 		return sqlSessionTemplateASS.update("excuse", sql);
 	}
 
 	@Override
 	public long count(WherePrams where) {
-		// TODO Auto-generated method stub
-		
 		String sql = "select count(*) from ";
 		
 		sql += tableName + where.getWherePrams();
@@ -508,7 +493,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public long size() {
-		// TODO Auto-generated method stub
 		String sql = "select count(*) from " + tableName;
 		SqlLog.info(sql);
 		long count = sqlSessionTemplateASS.selectOne("selectCount", sql);
@@ -517,7 +501,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public boolean isExist(T po) {
-		// TODO Auto-generated method stub
 		WherePrams wherePrams = Method.createDefault();
 
 		List<Pram> list = SqlUtil.getPramListofStatic(po);
@@ -536,13 +519,11 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public boolean isExist(WherePrams where) {
-		// TODO Auto-generated method stub
 		return count(where) > 0;
 	}
 
 	@Override
 	public List<T> in(String fileName, Serializable[] values) {
-		// TODO Auto-generated method stub
 		if (values.length < 1){
 			return new LinkedList<>();
 		}
@@ -623,7 +604,6 @@ public class DaoImpl<T extends Po, PK extends Serializable> implements Dao<T, PK
 
 	@Override
 	public List<T> listFormat(WherePrams where, Formatter fmt) {
-		// TODO Auto-generated method stub
 		String sql = "SELECT ";
 		
 		String sqlTab = tableName + " as t_0";

@@ -1,2 +1,4 @@
 # Agile-Development
-Agile Development Manager Tool Project
+这是一个敏捷开发管理工具, 含需求, 任务, 测试, 上线等常规的操作管理.
+采用标签的展现方式, 管理更直观.
+

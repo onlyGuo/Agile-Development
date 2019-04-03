@@ -19,7 +19,6 @@ public class InitComplete implements ApplicationListener<ApplicationEvent> {
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent arg0) {
-		// TODO Auto-generated method stub
 		Object source = arg0.getSource();
 		if (source.getClass().getName().equals("org.springframework.web.context.support.XmlWebApplicationContext")) {
 			@SuppressWarnings("resource")

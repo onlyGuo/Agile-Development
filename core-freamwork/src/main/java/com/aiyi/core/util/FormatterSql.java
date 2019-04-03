@@ -24,19 +24,16 @@ public class FormatterSql implements Formatter {
 	
 	@Override
 	public  void addFmt(String fieldName, String select, Class<? extends Po> po, WherePrams where) {
-		// TODO Auto-generated method stub
 		fmtParms.add(new FmtParm(fieldName, select, po, where));
 	}
 
 	@Override
 	public void addFmt(FmtParm parm) {
-		// TODO Auto-generated method stub
 		fmtParms.add(parm);
 	}
 
 	@Override
 	public List<FmtParm> listFmtParm() {
-		// TODO Auto-generated method stub
 		return fmtParms;
 	}
 

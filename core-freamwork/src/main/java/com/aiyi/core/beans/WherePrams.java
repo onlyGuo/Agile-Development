@@ -1,7 +1,9 @@
 package com.aiyi.core.beans;
 
+import com.aiyi.core.exception.ServiceInvokeException;
 import com.aiyi.core.sql.where.C;
 
+import javax.validation.ValidationException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +83,16 @@ public class WherePrams {
 		this.pram += " and " + pram;
 		return this;
 	}*/
-	
+
+
+	public WherePrams and(String file, String where, List<Serializable> values){
+		if (null == values || values.isEmpty()){
+			return this;
+		}
+		StringBuffer valueBuffer = getListValueParams(where, values);
+		return and(file, where, valueBuffer.toString());
+	}
+
 	/**
 	 * and条件
 	 * @param file
@@ -109,6 +120,8 @@ public class WherePrams {
 			}
 			if ("like".equals(where)) {
 				this.pram += " and " + file + " " + where + " '%" + value + "%'";
+			}else if ("in".equalsIgnoreCase(where)){
+				this.pram += " and " + file + " " + where + " " + value + "";
 			}else{
 				this.pram += " and " + file + " " + where + " '" + value + "'";
 			}
@@ -132,6 +145,11 @@ public class WherePrams {
 		String where = C.getSqlWhere(c);
 		return and(file, where, value);
 	}
+
+	public WherePrams and(String file, C c, List<Serializable> value){
+		String where = C.getSqlWhere(c);
+		return and(file, where, value);
+	}
 	
 /*	*//**
 	 * or条件
@@ -142,7 +160,30 @@ public class WherePrams {
 		this.pram += " or " + pram;
 		return this;
 	}*/
-	
+	private StringBuffer getListValueParams(String where, List<Serializable> values){
+		if (!where.equalsIgnoreCase("in")){
+			throw new ValidationException("This value cannot be a collection type");
+		}
+		StringBuffer valueBuffer = new StringBuffer("(");
+		for(int i = 0; i < values.size(); i++){
+			valueBuffer.append("'").append(values.get(i)).append("'");
+			if (i < values.size() - 1){
+				valueBuffer.append(", ");
+			}else{
+				valueBuffer.append(")");
+			}
+		}
+		return valueBuffer;
+	}
+
+	public WherePrams or(String file, String where, List<Serializable> values){
+		if (null == values || values.isEmpty()){
+			return this;
+		}
+		StringBuffer valueBuffer = getListValueParams(where, values);
+		return or(file, where, valueBuffer.toString());
+	}
+
 	/**
 	 * or条件
 	 * @param file
@@ -165,11 +206,12 @@ public class WherePrams {
 			}
 			if ("like".equals(where)) {
 				this.pram += " or " + file + " " + where + " '%" + value + "%'";
+			}else if ("in".equalsIgnoreCase(where)){
+				this.pram += " and " + file + " " + where + " " + value + "";
 			}else{
 				this.pram += " or " + file + " " + where + " '" + value + "'";
 			}
 		}
-		
 		
 		
 //		if("like".equals(where)){
@@ -187,9 +229,13 @@ public class WherePrams {
 		String where = C.getSqlWhere(c);
 		return or(file, where, value);
 	}
+
+	public WherePrams or(String file, C c, List<Serializable> value){
+		String where = C.getSqlWhere(c);
+		return or(file, where, value);
+	}
 	
 	public WherePrams limit(int startNum, int length) {
-		// TODO Auto-generated constructor stub
 //		this.limit = " limit ? , ? ";
 		this.limit = " limit " + startNum + " , " + length + " ";
 //		limitParms.add(startNum);
@@ -245,7 +291,6 @@ public class WherePrams {
 	}
 
 	public WherePrams and(String sql) {
-		// TODO Auto-generated method stub
 		this.pram += " and " + sql;
 		return this;
 	}

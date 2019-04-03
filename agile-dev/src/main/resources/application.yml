@@ -1,11 +1,13 @@
 server:
-  port: 8889
+  port: 8080
 spring:
   freemarker:
-    suffix: .html
+    suffix: .ftl
     cache: false
   application:
-    name: nginx
+    name: agile-dev
+  datasource:
+    url: jdbc:h2:file:./data/${application.name}
+    username: guoshengkai
+    password: guoshengkai
 
-page-store: 
-  location: D:\store

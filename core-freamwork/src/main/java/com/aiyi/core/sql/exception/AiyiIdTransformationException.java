@@ -10,7 +10,6 @@ package com.aiyi.core.sql.exception;
 public class AiyiIdTransformationException extends Exception {
 
 	public AiyiIdTransformationException(String message) {
-		// TODO Auto-generated constructor stub
 		 super(message);
 	}
 
