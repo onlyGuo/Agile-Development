@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class ProjectServiceImpl implements ProjectService {
     public List<ProjectVO> list(ProjectVO search) {
         WherePrams where = Method.where("USER_ID", C.EQ, ThreadUtil.getUserId());
         // 除了我的项目外, 还有我参与的项目
-        List<Serializable> idList = new ArrayList<>();
+        List<Serializable> idList = Arrays.asList("2", "3", "4");
         where.and("ID", C.IN, idList);
 
         if (!Vali.isEpt(search.getName())){
