@@ -6,7 +6,10 @@ spring:
     cache: false
   application:
     name: agile-dev
+    version: 1.0
+    title: 敏捷开发系统
   datasource:
+    driver-class-name: org.h2.Driver
     url: jdbc:h2:file:./data/${application.name}
     username: guoshengkai
     password: guoshengkai

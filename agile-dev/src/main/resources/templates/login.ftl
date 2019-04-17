@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
 	<meta charset="UTF-8">
-	<title>Nginx图形化管理系统</title>
+	<title>登录-敏捷开发系统</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -18,7 +18,7 @@
 <body class="login-bg">
     
     <div class="login">
-        <div class="message">Nginx图形化管理系统1.0-登录</div>
+        <div class="message">敏捷开发系统1.0</div>
         <div id="darkbannerwrap"></div>
         
         <form class="layui-form" >
@@ -38,11 +38,12 @@
     	$(function(){
     		$(".layui-form .layui-btn").click(function(){
     			var param = {
-    					username:$(".layui-form input[name='username']").val(),
+    					account:$(".layui-form input[name='username']").val(),
     					password:$(".layui-form input[name='password']").val()
     			};
-        		H.post("login", param, function(){
-        			location.href = "/admin/";
+        		H.post("doLogin", param, function(res){
+        		    setCookie("auth_token", res.responseBody.token, 1);
+        			location.href = "/project/";
         		});
         	});
     	});

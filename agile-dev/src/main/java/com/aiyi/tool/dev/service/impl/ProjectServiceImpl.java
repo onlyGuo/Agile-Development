@@ -1,4 +1,4 @@
-package com.aiyi.tool.dev.service;
+package com.aiyi.tool.dev.service.impl;
 
 import com.aiyi.core.beans.Method;
 import com.aiyi.core.beans.WherePrams;
@@ -6,6 +6,7 @@ import com.aiyi.core.sql.where.C;
 import com.aiyi.core.util.thread.ThreadUtil;
 import com.aiyi.tool.dev.dao.ProjectDao;
 import com.aiyi.tool.dev.entity.ProjectVO;
+import com.aiyi.tool.dev.service.ProjectService;
 import com.aiyi.tool.dev.utils.Vali;
 import org.springframework.stereotype.Service;
 
